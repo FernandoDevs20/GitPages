@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Cambia esto si estás trabajando en otra rama como gitHubPages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Instalar Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Cambia la versión si tu proyecto requiere una diferente
+
+      # 3. Instalar dependencias y construir el sitio
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+
+      # 4. Desplegar en GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist # Cambia esto si Astro genera los archivos en otro lugar

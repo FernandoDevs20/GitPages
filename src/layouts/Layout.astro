@@ -1,50 +1,33 @@
 ---
-interface Props {
-	title: string;
-}
-
+// Esto permite que el layout reciba contenido y variables desde las páginas que lo usen
 const { title } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <title>{title ? title : "Mi Proyecto en Astro"}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <!-- Importa tu CSS de Tailwind -->
+  </head>
+  <body class="font-sans text-gray-900 bg-gray-100">
+    <!-- Cabecera común para todas las páginas -->
+    <header class="p-4 bg-orange-300 text-white w-full flex">
+      <h1 class="text-2xl font-bold">FernandoDevs</h1>
+      <nav class="mt-2 flex ml-3">
+        <a href="/" class="mr-4 hover:underline bg-slate-300">Inicio</a>
+        <a href="/about" class="mr-4 hover:underline">Acerca de</a>
+        <a href="/contact" class="hover:underline">Contacto</a>
+      </nav>
+    </header>
+
+    <!-- Contenido principal, que se insertará desde las páginas -->
+    <main class="p-6">
+      <slot />
+      <!-- Este es el espacio donde se inserta el contenido de cada página -->
+    </main>
+
+    
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
