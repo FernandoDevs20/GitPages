@@ -1,17 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted} from "vue";
 
-defineProps({
-  contactUsImage: {
-    type: Object,
-    required: true,
-  },
-  logoImage: {
-    type: Object,
-    required: true,
-  },
-});
-
 function handleCloseModal() {
   document.body.classList.remove("overflow-hidden");
 }
