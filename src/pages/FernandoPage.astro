@@ -4,16 +4,9 @@ import FirstComponent from "../components/FirstComponent.vue";
 import PresentacionComponent from "../components/PresentacionComponent.vue";
 import NombreComponent from "../components/NombreComponent.vue";
 
-import { getImage } from "astro:assets";
-
-import imagenFernando from "../images/fernando.png";
 
 // Usar `getImage` para optimizar la imagen
-const image = await getImage({
-  src: imagenFernando,
-  format: "webp",
-});
-const imageSrc = "/images/fernando.png";
+
 const description = "Estudiante de Ingeniería en Sistemas Computacionales con habilidades en matemáticas y algoritmos, y experiencia en desarrollo de software y administración de bases de datos. Competente en trabajo en equipo y proyectos multidisciplinarios. Apasionado por los desafíos tecnológicos, busco contribuir en proyectos innovadores y de alto impacto.";
 ---
 
@@ -21,7 +14,6 @@ const description = "Estudiante de Ingeniería en Sistemas Computacionales con h
   <div class="flex">
     <PresentacionComponent
     client:load
-    imageSrc={imageSrc}
     description={description}
     />
     <NombreComponent />
